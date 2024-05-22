@@ -50,7 +50,7 @@ py-modules = []
 [tool.pytest.ini_options]
 minversion = "6.0"
 testpaths = [
-    "mdgeomkit/tests",
+    "mdgeom/tests",
 ]
 
 [tool.black]
