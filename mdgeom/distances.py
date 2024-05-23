@@ -59,6 +59,7 @@ def minimage_distance(a, b):
     d = calc_bonds(a, b, box=a.dimensions)
     return d
 
+
 def minimage_difference_vector(a, b):
     r"""Calculate the minimum image difference vector r_a - r_b
 
@@ -120,9 +121,7 @@ def _check_groups(a, b):
     if a.dimensions is None and b.dimensions is None:
         # it's ok when both AtomGroups have no unitcell
         pass
-    elif (a.dimensions is None) != (b.dimensions is None): # xor
+    elif (a.dimensions is None) != (b.dimensions is None):  # xor
         raise ValueError("One AtomGroup does not have unit cell information")
     elif not np.allclose(a.dimensions, b.dimensions):
         raise ValueError("Unit cell dimensions differ between groups.")
-
-

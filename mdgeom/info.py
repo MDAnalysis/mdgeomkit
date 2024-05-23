@@ -24,14 +24,36 @@ def summary(*universes, labels=None):
         There needs to be one element on `labels` for each universe.
 
     """
-    data_column_keys  = ["n_atoms", "Lx", "Ly", "Lz", "alpha", "beta", "gamma",
-                         "n_frames", "totaltime", "dt"]
-    data_column_names = ["n_atoms", "Lx/Å", "Ly/Å", "Lz/Å", "alpha", "beta", "gamma",
-                         "n_frames", "totaltime/ns", "dt/ps"]
+    data_column_keys = [
+        "n_atoms",
+        "Lx",
+        "Ly",
+        "Lz",
+        "alpha",
+        "beta",
+        "gamma",
+        "n_frames",
+        "totaltime",
+        "dt",
+    ]
+    data_column_names = [
+        "n_atoms",
+        "Lx/Å",
+        "Ly/Å",
+        "Lz/Å",
+        "alpha",
+        "beta",
+        "gamma",
+        "n_frames",
+        "totaltime/ns",
+        "dt/ps",
+    ]
 
     if len(labels) != len(universes):
-        raise ValueError(f"labels {labels} must contain one "
-                         f"label per universe {universes}")
+        raise ValueError(
+            f"labels {labels} must contain one "
+            f"label per universe {universes}"
+        )
 
     if labels is None:
         labels = len(universes) * [None]
@@ -39,13 +61,12 @@ def summary(*universes, labels=None):
     else:
         column_names = ["simulation"] + data_column_names
 
-
     table = prettytable.PrettyTable()
     table.field_names = column_names
 
     for u, label in zip(universes, labels):
         data = extract(u)
-        data['totaltime'] /= 1000 # convert ps to ns
+        data["totaltime"] /= 1000  # convert ps to ns
         row = [data[key] for key in data_column_keys]
         if label is not None:
             row = [label] + row
@@ -82,17 +103,17 @@ def extract(u):
         Lx, Ly, Lz, alpha, beta, gamma = u.dimensions
     except TypeError:
         # universe without a regular box
-        Lx, Ly, Lz, alpha, beta, gamma = 0, 0, 0,  0, 0, 0
+        Lx, Ly, Lz, alpha, beta, gamma = 0, 0, 0, 0, 0, 0
     data = {
-        'n_atoms': u.atoms.n_atoms,
-        'Lx': Lx, 'Ly': Ly, 'Lz': Lz,
-        'alpha': alpha, 'beta': beta, 'gamma': gamma,
-        'n_frames': u.trajectory.n_frames,
-        'totaltime': u.trajectory.totaltime,
-        'dt': u.trajectory.dt,
+        "n_atoms": u.atoms.n_atoms,
+        "Lx": Lx,
+        "Ly": Ly,
+        "Lz": Lz,
+        "alpha": alpha,
+        "beta": beta,
+        "gamma": gamma,
+        "n_frames": u.trajectory.n_frames,
+        "totaltime": u.trajectory.totaltime,
+        "dt": u.trajectory.dt,
     }
     return data
-
-
-
-
