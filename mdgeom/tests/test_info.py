@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pytest
 
 import MDAnalysis as mda
@@ -107,7 +109,7 @@ def test_summary(u_gmx, u_charmm, u_pdb, capsys):
         assert label in captured.out
     assert "47681" in captured.out
     assert "3341" in captured.out
-    assert "Lx/Å" in captured.out
+    assert "Lx/Ã…" in captured.out
 
 
 ### parametrized testing
