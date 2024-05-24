@@ -2,6 +2,9 @@ import numpy as np
 from numpy.testing import assert_allclose
 import pytest
 
+import MDAnalysis as mda
+import MDAnalysisTests.datafiles as data
+
 from mdgeom import distances
 
 # ADK FRET pairs
@@ -50,7 +53,7 @@ def test_minimage_distance_nopbc(u_nopbc):
 
 def test_minimage_distance_pbc(u_pbc):
     reference = np.array([29.67992244, 38.36642607, 42.18877151])
-    r = _minimage_difference_vector(u_pbc)
+    r = _minimage_distance(u_pbc)
     assert_allclose(r, reference)
 
 

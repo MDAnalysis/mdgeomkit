@@ -26,7 +26,7 @@ def test_extract_ugmx():
         "totaltime": 900.0000686645508,
         "dt": 100.00000762939453,
     }
-    u = mda.Universe(data.TPR, data.XTC)
+    universe = mda.Universe(data.TPR, data.XTC)
 
     # run the extract() function
     udata = info.extract(universe)
