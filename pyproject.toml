@@ -47,7 +47,7 @@ doc = [
 [tool.setuptools]
 py-modules = []
 
-[tool.setuptools.find]
+[tool.setuptools.packages.find]
 include = ["mdgeom"]
 
 [tool.pytest.ini_options]
