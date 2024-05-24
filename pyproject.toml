@@ -47,6 +47,9 @@ doc = [
 [tool.setuptools]
 py-modules = []
 
+[tool.setuptools.find]
+include = ["mdgeom"]
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 testpaths = [
