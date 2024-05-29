@@ -15,7 +15,7 @@ def summary(*universes, labels=None):
 
     Parameters
     ----------
-    universes : list of Universe
+    universes : Universe
         Print information about these simulation systems
         in a table.
 
@@ -49,17 +49,18 @@ def summary(*universes, labels=None):
         "dt/ps",
     ]
 
+    if labels is None:
+        labels = len(universes) * [None]
+        column_names = data_column_names
+    else:
+        column_names = ["simulation"] + data_column_names
+
     if len(labels) != len(universes):
         raise ValueError(
             f"labels {labels} must contain one "
             f"label per universe {universes}"
         )
 
-    if labels is None:
-        labels = len(universes) * [None]
-        column_names = data_column_names
-    else:
-        column_names = ["simulation"] + data_column_names
 
     table = prettytable.PrettyTable()
     table.field_names = column_names
