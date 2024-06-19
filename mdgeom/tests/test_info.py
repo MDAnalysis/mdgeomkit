@@ -41,6 +41,33 @@ def test_extract_ugmx():
         assert udata[key] == pytest.approx(reference[key])
 
 
+def test_extract_ucharmm():
+    reference = {
+        "n_atoms": 3341,
+        "Lx": 0,
+        "Ly": 0,
+        "Lz": 0,
+        "alpha": 0,
+        "beta": 0,
+        "gamma": 0,
+        "n_frames": 98,
+        "totaltime": 96.9999914562418,
+        "dt": 0.9999999119200186,
+    }
+    universe = mda.Universe(data.PSF, data.DCD)
+    
+    udata = info.extract(universe)
+    
+    for key in reference:
+        assert udata[key] == pytest.approx(reference[key])
+
+
+### Testing expected failure.
+def test_extract_non_universe():
+    universe = "This is not a universe."
+    with pytest.raises(AttributeError):
+        udata = info.extract(universe)
+
 ### testing with fixtures
 
 
